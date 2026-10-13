@@ -1,0 +1,19 @@
+
+# Ignore local datasets
+data/*.xlsx
+data/*.csv
+
+# Ignore Python environment files
+.venv/
+__pycache__/
+*.pyc
+
+# Ignore credentials and secrets
+.env
+.env.*
+!.env.example
+*service-account*.json
+
+# Ignore editor and OS files
+.vscode/
+.DS_Store
