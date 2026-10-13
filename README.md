@@ -69,6 +69,8 @@ The analytical layer supports questions such as:
 - Which products contribute most to revenue?
 - How do sales trends change over time?
 
+![Retail Sales Dashboard](dashboard/dash.png)
+
 ## Project Structure
 
 ```text
