@@ -1,0 +1,19 @@
+
+config {
+  type: "table",
+  schema: "retail_mart",
+  description: "Daily sales KPIs by country"
+}
+
+SELECT
+  DATE(invoice_timestamp) AS sales_date,
+  country,
+  COUNT(DISTINCT invoice_id) AS invoice_count,
+  SUM(quantity) AS units_sold,
+  SUM(quantity * unit_price) AS sales_value
+FROM ${ref("stg_sales")}
+WHERE quantity > 0
+  AND unit_price >= 0
+GROUP BY
+  sales_date,
+  country

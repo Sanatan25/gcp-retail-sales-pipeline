@@ -1,0 +1,22 @@
+
+config {
+  type: "view",
+  schema: "retail_staging",
+  description: "Cleaned and standardized retail sales data"
+}
+
+SELECT
+  CAST(InvoiceNo AS STRING) AS invoice_id,
+  CAST(StockCode AS STRING) AS product_id,
+  Description AS product_description,
+  SAFE_CAST(Quantity AS INT64) AS quantity,
+  SAFE_CAST(UnitPrice AS NUMERIC) AS unit_price,
+  SAFE_CAST(CustomerID AS STRING) AS customer_id,
+  Country AS country,
+  SAFE_CAST(InvoiceDate AS TIMESTAMP) AS invoice_timestamp
+FROM `striped-impulse-433506-a1.retail_raw.sales_source`
+WHERE InvoiceNo IS NOT NULL
+  AND StockCode IS NOT NULL
+  AND SAFE_CAST(Quantity AS INT64) IS NOT NULL
+  AND SAFE_CAST(UnitPrice AS NUMERIC) IS NOT NULL
+  AND SAFE_CAST(InvoiceDate AS TIMESTAMP) IS NOT NULL
